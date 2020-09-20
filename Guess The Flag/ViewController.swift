@@ -16,19 +16,37 @@ class ViewController: UIViewController {
     @IBAction func buttonTapped(_ sender: UIButton) {
         if sender.tag == correctAnswer {
             score += 1
-            showAlert(title: "Correct!", messag: "Your score is \(score)")
+            showAlert(title: "Correct!", messag: "Your score has +1")
         } else {
             score -= 1
-            showAlert(title: "Ooops!", messag: "This is \(countries[correctAnswer].uppercased()). Now your score is \(score)")
+            showAlert(title: "Ooops!", messag: "This is \(countries[correctAnswer].uppercased()). Now your score has -1")
         }
-        print(score)
     }
     
     
     var countries = [String]()
     var buttons = [UIButton]()
-    var score = 0
+    var score = 0 {
+        didSet {
+            title = "\(countries[correctAnswer].uppercased()). your current score is \(score)"
+        }
+    }
     var correctAnswer = 0
+    
+    var questionsAsked = 0 {
+        didSet {
+            if questionsAsked == 11 {
+                let finishAlert = UIAlertController(title: "FINISH", message: "You have answered 10 questions, your score is \(score)", preferredStyle: .alert)
+                finishAlert.addAction(UIAlertAction(title: "RESET", style: .default, handler: { (UIAlertAction) in
+                    self.questionsAsked = 0
+                    self.score = 0
+                    self.askQuestions()
+                }))
+                present(finishAlert, animated: true)
+            }
+            
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +68,6 @@ class ViewController: UIViewController {
     }
     
     func askQuestions(_: UIAlertAction! = nil) {
-        
         countries.shuffle()
         
         for button in buttons {
@@ -59,7 +76,11 @@ class ViewController: UIViewController {
         }
         
         correctAnswer = Int.random(in: 0...2)
-        title = countries[correctAnswer].uppercased()
+        title = "\(countries[correctAnswer].uppercased()). your current score is \(score)"
+        
+        
+        questionsAsked += 1
+
         
     }
     
