@@ -26,11 +26,7 @@ class ViewController: UIViewController {
     
     var countries = [String]()
     var buttons = [UIButton]()
-    var score = 0 {
-        didSet {
-            title = "\(countries[correctAnswer].uppercased()). your current score is \(score)"
-        }
-    }
+    var score = 0
     var correctAnswer = 0
     
     var questionsAsked = 0 {
@@ -59,12 +55,19 @@ class ViewController: UIViewController {
             button.layer.borderColor = UIColor.lightGray.cgColor
         }
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .pause, target: self, action: #selector(showScore))
+        
         
         
         askQuestions()
         
         
 
+    }
+    @objc func showScore() {
+        let scoreController = UIAlertController(title: "PAUSE", message: "Your score is \(score), you have answered \(questionsAsked - 1) of 10 questions.", preferredStyle: .alert)
+        scoreController.addAction(UIAlertAction(title: "Continue", style: .default, handler: nil))
+        present(scoreController, animated: true, completion: nil)
     }
     
     func askQuestions(_: UIAlertAction! = nil) {
@@ -76,7 +79,7 @@ class ViewController: UIViewController {
         }
         
         correctAnswer = Int.random(in: 0...2)
-        title = "\(countries[correctAnswer].uppercased()). your current score is \(score)"
+        title = "\(countries[correctAnswer].uppercased())."
         
         
         questionsAsked += 1
