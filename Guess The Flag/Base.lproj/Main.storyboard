@@ -18,10 +18,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R9I-Uz-vi5">
-                                <rect key="frame" x="107" y="188" width="200" height="100"/>
+                                <rect key="frame" x="107" y="283" width="200" height="100"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="2f3-PI-aHe"/>
-                                    <constraint firstAttribute="height" constant="100" id="BqN-3Y-u8G"/>
+                                    <constraint firstAttribute="width" secondItem="R9I-Uz-vi5" secondAttribute="height" multiplier="2:1" id="C9E-tb-NrF"/>
                                 </constraints>
                                 <state key="normal" image="us"/>
                                 <connections>
@@ -29,10 +28,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7GV-5s-fX5">
-                                <rect key="frame" x="107" y="303" width="200" height="100"/>
+                                <rect key="frame" x="107" y="398" width="200" height="100"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="O6f-hK-UFB"/>
-                                    <constraint firstAttribute="height" constant="100" id="f1j-iC-fbK"/>
+                                    <constraint firstAttribute="width" secondItem="7GV-5s-fX5" secondAttribute="height" multiplier="2:1" id="3gL-Qw-WlT"/>
                                 </constraints>
                                 <state key="normal" image="spain"/>
                                 <connections>
@@ -40,10 +38,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ney-k8-cJL">
-                                <rect key="frame" x="107" y="418" width="200" height="100"/>
+                                <rect key="frame" x="107" y="513" width="200" height="100"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="7nQ-1d-EV0"/>
-                                    <constraint firstAttribute="height" constant="100" id="Ghl-SJ-aRr"/>
+                                    <constraint firstAttribute="width" secondItem="Ney-k8-cJL" secondAttribute="height" multiplier="2:1" id="zYd-s5-a8s"/>
                                 </constraints>
                                 <state key="normal" image="germany"/>
                                 <connections>
@@ -55,13 +52,19 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="7GV-5s-fX5" firstAttribute="top" secondItem="R9I-Uz-vi5" secondAttribute="bottom" constant="15" id="3F3-V2-HNi"/>
+                            <constraint firstItem="Ney-k8-cJL" firstAttribute="height" secondItem="R9I-Uz-vi5" secondAttribute="height" id="3g7-O8-PSv"/>
                             <constraint firstItem="Ney-k8-cJL" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9d2-CR-3PS"/>
                             <constraint firstItem="Ney-k8-cJL" firstAttribute="top" secondItem="R9I-Uz-vi5" secondAttribute="bottom" constant="130" id="EfN-Kf-eaB"/>
                             <constraint firstItem="Ney-k8-cJL" firstAttribute="centerX" secondItem="R9I-Uz-vi5" secondAttribute="centerX" id="GIz-Jm-EaI"/>
+                            <constraint firstItem="7GV-5s-fX5" firstAttribute="width" secondItem="R9I-Uz-vi5" secondAttribute="width" id="I5K-ow-nVH"/>
                             <constraint firstItem="7GV-5s-fX5" firstAttribute="centerX" secondItem="R9I-Uz-vi5" secondAttribute="centerX" id="Rcu-WC-BsE"/>
                             <constraint firstItem="R9I-Uz-vi5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ZmQ-ga-Lh2"/>
+                            <constraint firstItem="7GV-5s-fX5" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="gSF-nR-ZLb"/>
+                            <constraint firstItem="7GV-5s-fX5" firstAttribute="height" secondItem="R9I-Uz-vi5" secondAttribute="height" id="h2i-gj-E5L"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Ney-k8-cJL" secondAttribute="bottom" constant="10" id="hzT-fb-W5c"/>
                             <constraint firstItem="7GV-5s-fX5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="nFs-Jj-egs"/>
-                            <constraint firstItem="R9I-Uz-vi5" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="wVr-S0-UYH"/>
+                            <constraint firstItem="Ney-k8-cJL" firstAttribute="width" secondItem="R9I-Uz-vi5" secondAttribute="width" id="sqs-LY-b6b"/>
+                            <constraint firstItem="R9I-Uz-vi5" firstAttribute="top" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="wVr-S0-UYH"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="FHj-Tz-WHk"/>
