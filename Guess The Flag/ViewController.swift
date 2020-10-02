@@ -13,6 +13,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var button2: UIButton!
     @IBOutlet weak var button3: UIButton!
     
+    var highScore = 0
+    
     @IBAction func buttonTapped(_ sender: UIButton) {
         if sender.tag == correctAnswer {
             score += 1
@@ -34,6 +36,7 @@ class ViewController: UIViewController {
             if questionsAsked == 11 {
                 let finishAlert = UIAlertController(title: "FINISH", message: "You have answered 10 questions, your score is \(score)", preferredStyle: .alert)
                 finishAlert.addAction(UIAlertAction(title: "RESET", style: .default, handler: { (UIAlertAction) in
+                    self.checkHighScore(for: self.score)
                     self.questionsAsked = 0
                     self.score = 0
                     self.askQuestions()
@@ -58,7 +61,7 @@ class ViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .pause, target: self, action: #selector(showScore))
         
         
-        
+        loadHighScore()
         askQuestions()
         
         
@@ -68,6 +71,7 @@ class ViewController: UIViewController {
         let scoreController = UIAlertController(title: "PAUSE", message: "Your score is \(score), you have answered \(questionsAsked - 1) of 10 questions.", preferredStyle: .alert)
         scoreController.addAction(UIAlertAction(title: "Continue", style: .default, handler: nil))
         present(scoreController, animated: true, completion: nil)
+        
     }
     
     func askQuestions(_: UIAlertAction! = nil) {
@@ -92,6 +96,31 @@ class ViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: askQuestions))
         present(alert, animated: true)
         
+    }
+    
+    func loadHighScore(){
+        let defaults = UserDefaults.standard
+        let decoder = JSONDecoder()
+        if let savedScore = defaults.data(forKey: "highscore") {
+            guard let decodedScore = try? decoder.decode(Int.self, from: savedScore) else {fatalError("Unable to load highscore")}
+            highScore = decodedScore
+        } else {
+            highScore = 0
+        }
+    }
+    func saveHighScore(_ score: Int){
+        let defaults = UserDefaults.standard
+        let encoder = JSONEncoder()
+        guard let savedScore = try? encoder.encode(score) else {fatalError("unable to save highscore")}
+        defaults.set(savedScore, forKey: "highscore")
+    }
+    func checkHighScore(for score: Int){
+        if score > highScore {
+            saveHighScore(score)
+            let highScAlert = UIAlertController(title: "Congratulations!", message: "Yoh have a highscore", preferredStyle: .alert)
+            highScAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(highScAlert, animated: true, completion: nil)
+        }
     }
 
 
